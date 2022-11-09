@@ -1,65 +1,54 @@
 #include <iostream>
-using namespace std;
-#include <stdlib.h>
+#include <string>
 #include <cmath>
-#include <stdio.h>
-#ifdef _WIN32
-#include <Windows.h>
+using namespace std;
 #include <windows.h>
-#else
-#include <unistd.h>
-#endif
-#include <cstdlib>
-#include <thread>
-
-int x,y;
-int height = 15;
-int width = 15;
-string s[15];
-float theta = 0;
-float increament = 0.1;
-int rad;
-void clearScreen(){
-for (int i = 0; i< width; i++){
-	for (int j = 0; j< height; j++){
-		s[j][i] = " ii"[0];
-	}
-}
-}
-
-void draw(){
-	for (int i = 0; i< width; i++){
-		for (int j = 0; j< height; j++){
-			cout<<s[j][i]<<" ";
-		}
-		cout<<endl;
-
-	}
-}
 
 
+int main () {
+  char s[20][20];
+  char l = 32;
+  for (int i =0; i< 20; i++)
+  {
+    for (int j = 0; j< 20; j++)
+    {
+      s[i][j]=l;
+    }
+  }
+  int x,y;
+  float theta = 0;
+  float rad = 8;
+  int lin = 100;
+  cout<<endl<<"enter number of loops: ";
+  cin>>lin;
+  cout<<endl<<"enter radius (1-8): ";
+  cin>>rad;
+  cout<<endl<<"wanna refresh screen after each loop?(0 for NO, other number for yes) ";
+  int per;
+  cin>>per;
+  for (int z = 0; z<lin; z++){
+    x = round(sin(theta)*rad)+10;
+    y = round(cos(theta)*rad)+10;
+    s[y][x] = 'o';
+    
+    theta += M_PI/25;
+  for (int i =0; i< 20; i++)
+  {
+    for (int j = 0; j< 20; j++)
+    {
+      cout<<s[i][j]<<" ";
+    }
+    cout<<endl;
+  }
+  if (per != 0){
+    s[y][x] = l;
+  }
+  cout<<x<<" "<<y<<endl;
+  if (z<lin-1){
+  system("CLS");}
+  //Sleep(1000/60);
+  }
+   
 
-int main(){
-	cout<<"enter radius (between 1 to 7): ";
-	cin>>rad;
-	//rad = 7;
-
-
-	clearScreen();
-	for (int i = 0; i<100; i++){
-		clearScreen();
-		system("CLS");
-		x = round(sin(theta)*rad + width/2);
-		y = round(cos(theta)*rad + height/2);
-		s[y][x] = "o "[0];
-		draw();
-		theta += increament;
-		//cout<<"x:"<<x-width/2<<" y:"<<y-height/2<<" angle:"<<theta<<endl;
-		//std::this_thread::sleep_for(chrono::milliseconds(200) );
-		Sleep(1000/120);
-	}
-	//cout<<"hmm"<<flush;
-	//system("CLS");
-	//cout<<"oh";
-	return 0;
+   return 0;
 }
